@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Product from "./Product/Product"
+import "./Dashboard.css"
 
 class Dashboard extends Component {
   render() {
@@ -10,12 +11,7 @@ class Dashboard extends Component {
         <Product key={i} name={e.name} price={e.price} id={e.id} img={e.img} />
       )
     })
-    return (
-      <div>
-        <div>Dashboard test</div>
-        {invList}
-      </div>
-    )
+    return <div className="whole-dash">{invList}</div>
   }
 }
 

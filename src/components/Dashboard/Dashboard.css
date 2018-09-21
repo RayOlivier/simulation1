@@ -1,0 +1,10 @@
+.whole-dash {
+  width: 40%;
+  /* background: #d34735; */
+  /* border: 2px black solid; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: 50px;
+}

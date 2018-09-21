@@ -1,18 +1,20 @@
 import React, { Component } from "react"
+import axios from "axios"
+import "./Form.css"
 
 class Form extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       name: "",
-      price: 0,
+      price: "",
       imgurl: ""
     }
 
     this.handleChange = this.handleChange.bind(this)
-    // this.postProduct = this.postProduct.bind(this)
-    // this.clearInputBoxes = this.clearInputBoxes.bind(this)
+    this.postProduct = this.postProduct.bind(this)
+    this.clearInputBoxes = this.clearInputBoxes.bind(this)
   }
 
   handleChange(e) {
@@ -21,7 +23,7 @@ class Form extends Component {
     console.log("e.target", e.target)
     // const name = e.target.name
     if (e.target.name === "price") {
-      let priceInt = parseInt(e.target.value)
+      let priceInt = parseFloat(e.target.value) //.toFixed(2)
       this.setState({ [e.target.name]: priceInt })
     } else {
       this.setState({
@@ -31,31 +33,68 @@ class Form extends Component {
     console.log("state: ", this.state)
   }
 
+  postProduct() {
+    axios
+      .post("/api/product", {
+        name: this.state.name,
+        price: this.state.price,
+        img: this.state.imgurl
+      })
+      .then((res) => {
+        console.log("res", res)
+        this.clearInputBoxes()
+        this.props.getInv()
+      })
+  }
+
+  clearInputBoxes() {
+    this.setState({
+      name: "",
+      price: "",
+      imgurl: ""
+    })
+  }
+
   render() {
     return (
-      <div>
-        <h3>Form Test</h3>
-        {/* <img /> */}
+      <div className="whole-form">
+        <img
+          className="form-img"
+          src={this.state.imgurl}
+          alt=""
+          onError={(e) => {
+            e.target.src =
+              "https://www.biber.com/dta/themes/biber/core/assets/images/no-featured-175.jpg"
+
+            //when this.state.imgurl doesn't lead to an img, it uses the url above
+          }}
+        />
         <div className="input-boxes">
+          <div>Image Url: </div>
           <input
             name="imgurl"
             placeholder="Image url..."
             onChange={this.handleChange}
-          />
+            value={this.state.imgurl}
+          />{" "}
+          <div>Product Name: </div>
           <input
             name="name"
             placeholder="Product name..."
             onChange={this.handleChange}
+            value={this.state.name}
           />
+          <div>Price: </div>
           <input
             name="price"
             placeholder="Product price..."
             onChange={this.handleChange}
+            value={this.state.price}
           />
-          <div className="form-buttons">
-            <button>Cancel</button>
-            <button>Add to Inventory</button>
-          </div>
+        </div>
+        <div className="form-buttons">
+          <button onClick={this.clearInputBoxes}>Cancel</button>
+          <button onClick={this.postProduct}>Add to Inventory</button>
         </div>
       </div>
     )
