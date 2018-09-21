@@ -43,7 +43,7 @@ class Form extends Component {
       .then((res) => {
         console.log("res", res)
         this.clearInputBoxes()
-        this.props.getInv()
+        // this.props.getInv()
       })
   }
 
@@ -53,6 +53,28 @@ class Form extends Component {
       price: "",
       imgurl: ""
     })
+  }
+
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      console.log(this.props.match.params.id)
+      axios.get(`/api/product/${this.props.match.params.id}`).then((res) => {
+        console.log(res)
+        this.setState({
+          name: res.data[0].name,
+          price: res.data[0].price,
+          imgurl: res.data[0].img
+        })
+      })
+    } else {
+      this.clearInputBoxes()
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.clearInputBoxes()
+    }
   }
 
   render() {

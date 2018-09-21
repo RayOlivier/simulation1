@@ -47,5 +47,16 @@ module.exports = {
         console.log(err)
         res.status(500).json("Oops!")
       })
+  },
+  getOne(req, res) {
+    let db = req.app.get("db")
+    db.getOne([req.params.id])
+      .then((info) => {
+        res.status(200).json(info)
+      })
+      .catch((err) => {
+        console.log(err)
+        res.status(500).json("Oops!")
+      })
   }
 }

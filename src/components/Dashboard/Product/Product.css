@@ -17,17 +17,44 @@
   width: 400px;
 }
 
+.right-side {
+  display: flex;
+  border: 2px solid black;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: flex-start; */
+  /* justify-content: flex-start; */
+}
+
+.prod-button {
+  background: #3ad886;
+  height: 30px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prod-button:hover {
+  cursor: pointer;
+}
+
+.product-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .product-text {
   font-size: 28px;
   /* width: 200px; */
   /* border: 2px black solid; */
-  margin: 20px;
+  /* margin: 20px; */
   /* margin: 0px 40px;
   margin-bottom: 150px; */
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
 }
 
 .product-name {

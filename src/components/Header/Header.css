@@ -19,3 +19,22 @@
   color: white;
   margin: 10px;
 }
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  margin: 20px;
+}
+
+.header-btn {
+  background: #3ad886;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  border-radius: 16px;
+  font-size: 20px;
+}

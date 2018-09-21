@@ -17,5 +17,6 @@ app.get("/api/inventory", controller.getInventory)
 app.post("/api/product", controller.postProduct)
 app.delete("/api/product/:id", controller.deleteProduct)
 app.put("/api/product/:id", controller.updateProduct)
+app.get("/api/product/:id", controller.getOne)
 
 app.listen(port, () => console.log(`Sim 1 listening on ${port}`))

@@ -1,44 +1,47 @@
 import React, { Component } from "react"
 import "./App.css"
-import Dashboard from "./components/Dashboard/Dashboard"
-import Form from "./components/Form/Form"
 import Header from "./components/Header/Header"
-import axios from "axios"
+import { BrowserRouter } from "react-router-dom"
+import routes from "./routes"
 
 class App extends Component {
-  constructor() {
-    super()
+  // constructor() {
+  //   super()
 
-    this.state = {
-      inventory: []
-    }
-    this.getInventory = this.getInventory.bind(this)
-  }
+  //   this.state = {
+  //     inventory: []
+  //   }
+  //   this.getInventory = this.getInventory.bind(this)
+  // }
 
-  componentDidMount() {
-    axios.get("/api/inventory").then((res) => {
-      console.log(res)
-      this.setState({ inventory: res.data })
-      console.log("state:", this.state.inventory)
-    })
-  }
+  // componentDidMount() {
+  //   axios.get("/api/inventory").then((res) => {
+  //     console.log(res)
+  //     this.setState({ inventory: res.data })
+  //     console.log("state:", this.state.inventory)
+  //   })
+  // }
 
-  getInventory() {
-    axios.get("/api/inventory").then((res) => {
-      console.log(res)
-      this.setState({ inventory: res.data })
-      console.log("state:", this.state.inventory)
-    })
-  }
+  // getInventory() {
+  //   axios.get("/api/inventory").then((res) => {
+  //     console.log(res)
+  //     this.setState({ inventory: res.data })
+  //     console.log("state:", this.state.inventory)
+  //   })
+  // }
   render() {
     return (
-      <div className="whole-app">
-        <Header />
-        <div className="main">
-          <Dashboard inventory={this.state.inventory} />
-          <Form getInv={this.getInventory} />
+      <BrowserRouter>
+        <div className="whole-app">
+          <Header />
+          {/* <Header />
+          <div className="main">
+            <Dashboard inventory={this.state.inventory} />
+            <Form getInv={this.getInventory} />
+          </div> */}
+          <main>{routes}</main>
         </div>
-      </div>
+      </BrowserRouter>
     )
   }
 }

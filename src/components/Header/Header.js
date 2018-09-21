@@ -1,5 +1,6 @@
 import React from "react"
 import "./Header.css"
+import { Link } from "react-router-dom"
 
 export default function Header(props) {
   return (
@@ -10,6 +11,14 @@ export default function Header(props) {
         alt="shelfie"
       />
       <div className="header-title">SHELFIE </div>
+      <div className="header-buttons">
+        <Link to="/add">
+          <div className="header-btn">Add Inventory</div>
+        </Link>
+        <Link to="/">
+          <div className="header-btn">Dashboard</div>
+        </Link>
+      </div>
     </div>
   )
 }
