@@ -9,8 +9,8 @@ export default function Product(props) {
       <img className="product-img" src={props.img} alt="" />
       <div className="right-side">
         <div className="product-text">
-          <h5 className="product-name">Product: {props.name}</h5>
-          <h5 className="product-price">${props.price}</h5>
+          <div>Product: {props.name}</div>
+          <div>${props.price}</div>
         </div>
         <div className="product-buttons">
           <div

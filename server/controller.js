@@ -34,6 +34,7 @@ module.exports = {
   },
   updateProduct(req, res) {
     let db = req.app.get("db")
+    console.log(req)
     db.updateProduct([
       req.body.name,
       req.body.price,

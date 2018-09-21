@@ -9,11 +9,13 @@ class Form extends Component {
     this.state = {
       name: "",
       price: "",
-      imgurl: ""
+      imgurl: "",
+      edit: false
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.postProduct = this.postProduct.bind(this)
+    this.updateProduct = this.updateProduct.bind(this)
     this.clearInputBoxes = this.clearInputBoxes.bind(this)
   }
 
@@ -47,11 +49,25 @@ class Form extends Component {
       })
   }
 
+  updateProduct() {
+    axios
+      .put(`/api/product/${this.props.match.params.id}`, {
+        name: this.state.name,
+        price: this.state.price,
+        img: this.state.imgurl
+      })
+      .then((res) => {
+        console.log(res)
+        this.clearInputBoxes()
+      })
+  }
+
   clearInputBoxes() {
     this.setState({
       name: "",
       price: "",
-      imgurl: ""
+      imgurl: "",
+      edit: false
     })
   }
 
@@ -63,7 +79,8 @@ class Form extends Component {
         this.setState({
           name: res.data[0].name,
           price: res.data[0].price,
-          imgurl: res.data[0].img
+          imgurl: res.data[0].img,
+          edit: true
         })
       })
     } else {
@@ -116,7 +133,11 @@ class Form extends Component {
         </div>
         <div className="form-buttons">
           <button onClick={this.clearInputBoxes}>Cancel</button>
-          <button onClick={this.postProduct}>Add to Inventory</button>
+          {this.state.edit ? (
+            <button onClick={this.updateProduct}> Save Changes </button>
+          ) : (
+            <button onClick={this.postProduct}>Add to Inventory</button>
+          )}
         </div>
       </div>
     )
